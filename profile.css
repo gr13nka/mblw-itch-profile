@@ -117,12 +117,12 @@ body { cursor: url(CURSOR) 1 23, auto; }
 }
 .game_cell:hover .game_title::after { opacity: .38; transition: opacity .7s .12s; }
 
-/* the main games (the top grid's first two in the theme's order: ORCHINKO, Do Not Smoke) three cards wide,
-   each beside one more game (4th: SWAP, 3rd: quitters), the second pair mirrored into a zigzag */
+/* the main games, ORCHINKO and Do Not Smoke, three cards wide, each beside one more game (SWAP, quitters),
+   the second pair mirrored into a zigzag. Placed by id: the grid holds more than the cards, so counting misses */
 @media (min-width: 760px) {
   .game_column .game_grid_widget { grid-template-columns: repeat(4, 1fr) !important; }
-  .game_column .game_cell {
-    &:nth-child(-n+2) {
+  .game_column {
+    :is([data-game_id="5209851"], [data-game_id="5107122"]) {
       display: grid; grid-template-columns: 1.15fr 1fr; gap: 12px;
       .game_thumb { align-self: center; }
       .game_cell_data { margin: 0; padding: 18px 22px; display: flex; flex-direction: column; justify-content: center; }
@@ -138,11 +138,11 @@ body { cursor: url(CURSOR) 1 23, auto; }
       .thumb_link::before { background-image: linear-gradient(#fff3, #fff0); }
       .thumb_link::after { opacity: .35; }
     }
-    &:nth-child(-n+2):hover { .thumb_link::after { opacity: .15; } .game_text::after { background: #4a6c98; } }
-    &:nth-child(1) { grid-area: 1 / 1 / 2 / 4; }
-    &:nth-child(2) { grid-area: 2 / 2 / 3 / 5; grid-template-columns: 1fr 1.15fr; .game_cell_data { order: -1; } }
-    &:nth-child(3) { grid-area: 2 / 1; }
-    &:nth-child(4) { grid-area: 1 / 4; }
+    :is([data-game_id="5209851"], [data-game_id="5107122"]):hover { .thumb_link::after { opacity: .15; } .game_text::after { background: #4a6c98; } }
+    [data-game_id="5209851"] { grid-area: 1 / 1 / 2 / 4; }
+    [data-game_id="4065579"] { grid-area: 1 / 4; }
+    [data-game_id="5189714"] { grid-area: 2 / 1; }
+    [data-game_id="5107122"] { grid-area: 2 / 2 / 3 / 5; grid-template-columns: 1fr 1.15fr; .game_cell_data { order: -1; } }
   }
 }
 
@@ -151,9 +151,9 @@ body { cursor: url(CURSOR) 1 23, auto; }
 [data-collection_id="8526712"] {
   .game_list { display: flex !important; flex-direction: column-reverse; gap: 14px; max-width: 890px; position: relative; padding: 16px 0 16px 130px; }
   .game_list::before { content: ""; position: absolute; left: 96px; top: 0; bottom: 0; width: 4px; background: repeating-linear-gradient(var(--bz) 0 8px, #0000 0 14px); }
-  .game_cell { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; padding: 6px; }
+  .game_cell { display: grid; grid-template-columns: 150px 1fr; gap: 14px; align-items: center; width: auto !important; padding: 6px; }
   .game_cell_data { margin: 0; padding: 8px 12px; }
-  .game_genre::before { content: var(--dt); position: absolute; right: calc(100% + 54px); top: 50%; translate: 0 -50%; font-size: 16px; }
+  .game_genre::before { content: var(--dt); position: absolute; right: calc(100% + 54px); top: 50%; translate: 0 -50%; white-space: nowrap; font-size: 16px; }
   .game_platform::before { content: ""; position: absolute; left: -41px; top: 50%; translate: 0 -50%; width: 12px; height: 12px; background: #fff; border: 3px solid var(--sel); }
   .game_platform::after { content: var(--yr); position: absolute; left: -128px; top: -30px; padding: 0 8px; line-height: 20px; color: #fff; background: var(--ink); }
   [data-game_id="4065579"], [data-game_id="4484780"] { margin-top: 30px; }
